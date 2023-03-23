@@ -127,12 +127,21 @@ class VaultGame extends PIXI.Container {
         }
     }
       
-    unlockVault() {
-        this.door.visible = false;
-        this.doorContainer.visible = true;
-        this.handleContainer.visible = false;          
-        this.blink.visible = true;
-        this.animateBlink();
+    async unlockVault() {
+      this.door.visible = false;
+      this.doorContainer.visible = true;
+      this.handleContainer.visible = false;          
+      this.blink.visible = true;
+      this.animateBlink();
+  
+      await new Promise(resolve => setTimeout(resolve, 5000));
+  
+      this.door.visible = true;
+      this.doorContainer.visible = false;
+      this.handleContainer.visible = true;          
+      this.blink.visible = false;
+      
+      this.resetGame();
     }
       
     animateBlink() {
@@ -158,7 +167,7 @@ class VaultGame extends PIXI.Container {
             onComplete: () => {
               this.generateNewCombination();
             },
-        });  
+        });
     }
 }      
 
