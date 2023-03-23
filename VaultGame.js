@@ -6,6 +6,15 @@ class VaultGame extends PIXI.Container {
       this.handlePointerDown = this.handlePointerDown.bind(this);
 
       this.scaleFactor = 0.25;
+
+      this.timer = 0;
+      this.timerText = new PIXI.Text('0', {
+            fontFamily: 'Arial',
+            fontSize: 24,
+            fill: 0xffffff,
+            align: 'center',
+      });
+      this.timerInterval = null;
       
       this.initializeGame();
     }
@@ -51,6 +60,13 @@ class VaultGame extends PIXI.Container {
       this.handleContainer.addChild(this.handleShadow);
       this.handleContainer.addChild(this.handle);
       this.addChild(this.handleContainer);
+
+      this.addChild(this.timerText);
+
+      this.timerText.anchor.set(0.5);
+      this.timerText.position.set(app.screen.width / 2 - 285, app.screen.height / 2 - 35);
+    
+      this.startTimer();
   
       this.bg.anchor.set(0.5, 0.5);
       this.blink.anchor.set(0.5);
@@ -156,6 +172,13 @@ class VaultGame extends PIXI.Container {
           }
         );
     }
+
+    startTimer() {
+      this.timerInterval = setInterval(() => {
+          this.timer += 1;
+          this.timerText.text = this.timer;
+      }, 1000);
+    }
       
     resetGame() {
         this.attempts = [];
@@ -168,6 +191,10 @@ class VaultGame extends PIXI.Container {
               this.generateNewCombination();
             },
         });
+
+        this.timer = 0;
+        clearInterval(this.timerInterval);
+        this.startTimer();
     }
 }      
 
