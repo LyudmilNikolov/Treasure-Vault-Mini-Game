@@ -13,7 +13,7 @@ The objective of the game is to unlock the vault by rotating the handle accordin
 
 Players can rotate the handle by clicking or tapping on either side of it. The game provides immediate feedback on whether the current move is correct or not. If the player makes a wrong move, the game resets, and the handle spins wildly before generating a new combination.
 
-The game is won when the player successfully performs all three steps of the secret combination. Upon winning, the vault door opens, and the lights start blinking to celebrate the victory. To restard the game just refresh the page 
+The game is won when the player successfully performs all three steps of the secret combination. Upon winning, the vault door opens, and the lights start blinking to celebrate the victory. The game will restart after 5 seconds.
 
 ## Installation & Running
 To play the game, simply clone the repository and serve the files using a local server like http-server or by using the Demo link above.
